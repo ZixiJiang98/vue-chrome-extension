@@ -36,6 +36,12 @@ export default {
       matches: ["*://*/*"],
       run_at: "document_end",
     },
+    {
+      all_frames: false,
+      js: ["src/content-script/floating-button.ts"],
+      matches: ["*://*/*"],
+      run_at: "document_end",
+    },
   ],
   side_panel: {
     default_path: "src/ui/side-panel/index.html",
@@ -57,9 +63,9 @@ export default {
     },
   ],
   icons: {
-    16: "src/assets/logo.png",
-    24: "src/assets/logo.png",
-    32: "src/assets/logo.png",
-    128: "src/assets/logo.png",
+    16: "src/assets/favicon.png",
+    24: "src/assets/favicon.png",
+    32: "src/assets/favicon.png",
+    128: "src/assets/favicon.png",
   },
 } as ManifestV3Export

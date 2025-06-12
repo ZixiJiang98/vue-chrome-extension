@@ -1,11 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { usePopupStore } from '../../../stores/popup.store'
+
+const popupStore = usePopupStore()
+
+const handleSignOut = () => {
+  popupStore.signOut()
+}
+</script>
 
 <template>
   <div>
     <div class="hero">
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <h1>Welcome!</h1>
+          <h1>Welcome{{ popupStore.user.username ? `, ${popupStore.user.username}` : '' }}!</h1>
           <p>
             Unlock productivity and streamline your workflow with our SaaS
             Chrome extension platform.

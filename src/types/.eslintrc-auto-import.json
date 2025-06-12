@@ -279,6 +279,7 @@
     "usePointer": true,
     "usePointerLock": true,
     "usePointerSwipe": true,
+    "usePopupStore": true,
     "usePortal": true,
     "usePreferredColorScheme": true,
     "usePreferredContrast": true,
