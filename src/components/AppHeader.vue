@@ -6,11 +6,7 @@
       to="/"
       class="flex gap-2 items-center"
     >
-      <img
-        src="@assets/logo.png"
-        alt="logo"
-        class="h-8 w-auto"
-      />
+
       <div class="font-semibold text-primary">
         Vite Vue 3 Chrome Extension
       </div>

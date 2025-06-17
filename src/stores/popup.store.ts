@@ -11,6 +11,13 @@ export const usePopupStore = defineStore("popup", () => {
     email?: string
   }>("user", {})
 
+  // Clinic options
+  const clinicOptions = ref([
+    { id: 1, name: 'Clinic 1', address: '123 Main St' },
+    { id: 2, name: 'Clinic 2', address: '456 Oak Ave' },
+    { id: 3, name: 'Clinic 3', address: '789 Pine Rd' }
+  ])
+
   // Actions
   const signIn = (username: string, password: string) => {
     // Here you would typically validate credentials
@@ -35,6 +42,7 @@ export const usePopupStore = defineStore("popup", () => {
     signedIn,
     selectedClinic,
     user,
+    clinicOptions,
     signIn,
     signOut,
     selectClinic,

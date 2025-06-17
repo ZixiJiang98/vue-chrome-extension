@@ -1,63 +1,85 @@
 <script setup lang="ts">
-import { usePopupStore } from '../../stores/popup.store'
-import Login from './pages/login.vue'
-import SelectClinic from './pages/select-clinic.vue'
+import VibrantLogo from "../common/VibrantLogo.vue"
+import UserHeader from "../common/UserHeader.vue"
+import { usePopupStore } from "../../stores/popup.store"
+import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
 
 const popupStore = usePopupStore()
+const router = useRouter()
 
-// Function to handle clinic selection
-const handleClinicSelected = (clinic: string) => {
-  popupStore.selectClinic(clinic)
+const handleSettings = () => {
+  // TODO: Implement settings functionality
+  console.log('Settings clicked from header')
 }
+
+const handleClose = () => {
+  // Close the popup window
+  window.close()
+}
+
+onMounted(() => {
+  // If user is logged in but no clinic is selected, redirect to select-clinic
+  if (popupStore.user.username && !popupStore.selectedClinic) {
+    router.push('/select-clinic')
+  }
+})
 </script>
 
 <template>
-  <!-- Show login component when not signed in -->
-  <Login v-if="!popupStore.signedIn" />
-  
-  <!-- Show clinic selection when signed in but no clinic selected -->
-  <SelectClinic v-else-if="!popupStore.selectedClinic" @clinic-selected="handleClinicSelected" />
-  
-  <!-- Show main app when signed in and clinic selected -->
-  <UApp v-else class="app-container">
-    <AppHeader />
-
-    <div class="p-4 prose dark:prose-invert">
-      <RouterView />
+  <div class="popup-container">
+    <!-- User Header at the top -->
+    <div class="header-container">
+      <UserHeader 
+        :username="popupStore.user.username || 'Vibrant IT3'"
+        :clinic-name="popupStore.selectedClinic || 'Clinic 3333'"
+        @settings-click="handleSettings"
+        @close-click="handleClose"
+      />
     </div>
 
-    <AppFooter />
-  </UApp>
+    <!-- Main app content -->
+    <UApp class="app-container">
+      <div>
+        <RouterView />
+      </div>
+    </UApp>
+
+    <!-- VibrantLogo positioned at bottom center -->
+    <div class="logo-container">
+      <VibrantLogo />
+    </div>
+  </div>
 </template>
 
 <style scoped>
-/* Ensure login component takes full space without any margins */
-:deep(.login-popup) {
-  margin: 0;
-  padding: 0;
-}
-
-/* Apply same styling as login popup to main app container */
-.app-container {
-  border-radius: 20px;
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
-  background: #fff;
-  background-image: conic-gradient(
-    from 43deg at 50% 50%,
-    rgb(223, 243, 247) 0deg,
-    rgb(255, 250, 241) 180deg,
-    rgb(223, 243, 247) 360deg
-  );
-  width: 260px;
-  height: 380px;
-  padding: 8px;
+.popup-container {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.header-container {
+  padding: 16px;
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.app-container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 </style>

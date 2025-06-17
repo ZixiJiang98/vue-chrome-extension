@@ -1,62 +1,74 @@
 <script setup lang="ts">
 import { usePopupStore } from '../../../stores/popup.store'
+import { useRouter } from 'vue-router'
+import { watchEffect } from 'vue'
 
 const popupStore = usePopupStore()
+const router = useRouter()
+
+// Watch for signedIn state changes and redirect accordingly
+watchEffect(() => {
+  if (!popupStore.signedIn) {
+    router.push('/action-popup/welcome-login')
+  }
+})
 
 const handleSignOut = () => {
   popupStore.signOut()
+  router.push('/action-popup/welcome-login')
 }
 </script>
 
 <template>
-  <div>
-    <div class="hero">
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <h1>Welcome{{ popupStore.user.username ? `, ${popupStore.user.username}` : '' }}!</h1>
-          <p>
-            Unlock productivity and streamline your workflow with our SaaS
-            Chrome extension platform.
-          </p>
-
-          <div class="flex gap-2 justify-center mb-4">
-            <UButton
-              to="/common/features"
-              icon="ph:list-heart"
-              variant="subtle"
-            >
-              Features
-            </UButton>
-            <UButton
-              to="/common/pricing"
-              icon="ph:presentation-chart"
-              variant="subtle"
-            >
-              Features
-            </UButton>
-          </div>
-
-          <UButton
-            to="/common/account/login"
-            icon="ph:rocket-launch"
-            size="xl"
-          >
-            Get Started Now
-          </UButton>
-
-          <div class="flex justify-evenly my-6">
-            <RouterLink to="/action-popup/playground">Playground</RouterLink>
-
-            <a href="https://github.com/mubaidr/vite-vue3-browser-extension-v3">
-              Documentation
-            </a>
-
-            <a href="https://mubaidr.js.org">Support</a>
-          </div>
-        </div>
-      </div>
+  <div class="main-content">
+    <div class="content">
+      <p>Welcome to the main application!</p>
+      <p>User: {{ popupStore.user.username }}</p>
+      <button class="sign-out-btn" @click="handleSignOut">
+        Sign Out
+      </button>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.main-content {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  margin: 0;
+  color: #333333;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+
+.sign-out-btn {
+  padding: 8px 16px;
+  background: #1E4670;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+
+.sign-out-btn:hover {
+  background: #163a5f;
+}
+
+.content {
+  flex: 1;
+  color: #333333;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+}
+</style>

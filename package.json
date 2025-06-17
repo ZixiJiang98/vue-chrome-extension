@@ -24,10 +24,10 @@
     "dotenv": "^16.5.0",
     "eslint": "^9.28.0",
     "eslint-plugin-vue": "^10.2.0",
+    "figma-developer-mcp": "^0.4.2",
     "get-installed-browsers": "^0.1.7",
     "globals": "^16.2.0",
     "marked": "^15.0.12",
-    "pinia": "^3.0.3",
     "prettier": "^3.5.3",
     "tailwindcss": "^4.1.8",
     "terser": "^5.42.0",
@@ -41,9 +41,6 @@
     "vite": "^6.3.5",
     "vite-plugin-vue-devtools": "^7.7.6",
     "vite-plugin-zip-pack": "^1.2.4",
-    "vue": "^3.5.16",
-    "vue-i18n": "^11.1.5",
-    "vue-router": "^4.5.1",
     "vue-tsc": "^2.2.10",
     "web-ext": "^8.7.1",
     "webext-bridge": "^6.0.1",
@@ -79,6 +76,10 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.513.0",
-    "tailwind-merge": "^3.3.0"
+    "pinia": "^3.0.3",
+    "tailwind-merge": "^3.3.0",
+    "vue": "^3.5.16",
+    "vue-i18n": "^11.1.5",
+    "vue-router": "^4.5.1"
   }
 }
