@@ -59,9 +59,14 @@
         </div>
 
         <!-- Sign In Button -->
-        <button class="sign-in-button" @click="handleSignIn">
+        <Button
+          type="round"
+          color-type="dark-blue"
+          @click="handleSignIn"
+          >
           Sign In
-        </button>
+        </Button>
+
       </div>
     </div>
   </div>
@@ -71,6 +76,7 @@
 import { ref } from 'vue'
 import { usePopupStore } from '../../../stores/popup.store'
 import { useRouter } from 'vue-router'
+import Button from '../../../NewLibrary/Button.vue'
 
 const popupStore = usePopupStore()
 const router = useRouter()
@@ -149,7 +155,6 @@ const handleForgotPassword = () => {
   align-items: center;
   align-self: stretch;
   gap: 16px;
-  padding: 0 16px;
   width: 100%;
 }
 
@@ -188,7 +193,6 @@ const handleForgotPassword = () => {
   align-items: center;
   align-self: stretch;
   gap: 32px;
-  width: 100%;
 }
 
 .input-fields {
@@ -210,7 +214,6 @@ const handleForgotPassword = () => {
 .field-label {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   gap: 4px;
   height: 24px;
@@ -266,6 +269,8 @@ const handleForgotPassword = () => {
   align-self: stretch;
   gap: 10px;
   width: 100%;
+  font-size: 11px;
+  line-height: 16px;
 }
 
 .forgot-password-link {

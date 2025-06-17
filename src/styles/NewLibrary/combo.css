@@ -1,0 +1,56 @@
+.combo-box-input {
+  height: 24px;
+  display: block ;  /* Removes inline-flex */
+  width: auto ;  /* Prevents forced 100% width */
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.combo-box-input .el-input__wrapper {
+  width: 100%;
+  height: 24px;
+  padding: 0;
+  border-radius: var(--radius, 4px);
+  margin-right: 8px;
+  background: none;
+}
+
+.combo-box-input .el-input__inner {
+  color: var(--TrueBlack, #333);
+  padding: 12px;
+  height: 24px;
+  border-radius: var(--radius, 4px);
+  background: none;
+
+  /* Web_InputField_Content */
+  font-family: "IBM Plex Sans Hebrew";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.15px;
+
+  background: var(--color-White-000, #FFF);
+  border-radius: 4px;
+  transition: background 0.5s ease-in-out; 
+}
+
+.combo-box-input .el-input__inner:hover {
+  background: rgba(30, 70, 112, 0.08); 
+  transition: background 0.5s ease;
+}
+
+.combo-box-input .el-input__inner:active {
+  background:rgba(30, 70, 112, 0.12);
+  transition: none;
+}
+
+.combo-box-input .el-input__inner:focus {
+  background: var(--color-White-000, #FFF);
+  transition: background 0.8s ease-in-out; 
+}
+
+.combo-box-input .el-input__inner::placeholder {
+  color: var(--ContentMediumGrey, #999);
+}

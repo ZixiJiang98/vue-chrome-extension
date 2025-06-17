@@ -54,15 +54,14 @@ onMounted(() => {
 
 <style scoped>
 .popup-container {
-  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
+  padding: 16px;
 }
 
 .header-container {
-  padding: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +76,7 @@ onMounted(() => {
 
 .logo-container {
   position: absolute;
-  bottom: 16px;
+  bottom: 42px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;

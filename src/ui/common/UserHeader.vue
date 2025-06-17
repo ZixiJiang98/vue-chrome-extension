@@ -98,8 +98,7 @@ const handleMouseLeave = () => {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  gap: 161px;
+  align-items: start;
   width: 268px;
   height: auto;
 }
@@ -157,6 +156,7 @@ const handleMouseLeave = () => {
   cursor: pointer;
   padding: 0;
   transition: opacity 0.2s ease;
+  width: 22px;
 }
 
 .control-button:focus {

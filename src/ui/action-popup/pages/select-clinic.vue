@@ -1,75 +1,78 @@
 <template>
-  <div class="select-clinic-container">
-    <div class="welcome-section">
-      <div class="welcome-title">Welcome!</div>
-      <div class="welcome-subtitle">Select a clinic.</div>
-    </div>
-    <div class="clinic-selection">
-      <div class="input-section">
-        <div class="practice-field">
-          <div class="practice-label-container">
-            <div class="clinic-icon">
-              <img src="@assets/icons/clinicIcon.png" alt="Clinic Icon" width="24" height="24">
+  <div class="welcome-login-container">
+    <div class="welcome-login-section">
+        <!-- Welcome Text -->
+      <div class="welcome-text">
+        <h1 class="welcome-title">Welcome!</h1>
+        <p class="welcome-subtitle">Please sign in.</p>
+      </div>
+      <div class="clinic-selection">
+        <div class="input-section">
+          <div class="practice-field">
+            <div class="practice-label-container">
+              <div class="clinic-icon">
+                <img src="@assets/icons/clinicIcon.png" alt="Clinic Icon" width="24" height="24">
+              </div>
+              <div class="practice-label">Practice</div>
             </div>
-            <div class="practice-label">Practice</div>
-          </div>
-          <div class="dropdown-container">
-            <div
-              class="dropdown-trigger"
-              @click="toggleDropdown"
-            >
-              <div class="dropdown-option">
-                <div class="selected-option">
-                  {{ selectedOption || "Choose a practice" }}
-                </div>
-                <div class="dropdown-arrow">
-                  <svg
-                    width="14"
-                    height="8"
-                    viewBox="0 0 14 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    :class="{ rotated: isDropdownOpen }"
-                  >
-                    <path
-                      d="M1.645 -7.19052e-08L-2.83151e-07 1.52227L7 8L14 1.52227L12.355 -5.40054e-07L7 4.94467L1.645 -7.19052e-08Z"
-                      fill="#374957"
-                    ></path>
-                  </svg>
+            <div class="dropdown-container">
+              <div
+                class="dropdown-trigger"
+                @click="toggleDropdown"
+              >
+                <div class="dropdown-option">
+                  <div class="selected-option">
+                    {{ selectedOption || "Choose a practice" }}
+                  </div>
+                  <div class="dropdown-arrow">
+                    <svg
+                      width="14"
+                      height="8"
+                      viewBox="0 0 14 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      :class="{ rotated: isDropdownOpen }"
+                    >
+                      <path
+                        d="M1.645 -7.19052e-08L-2.83151e-07 1.52227L7 8L14 1.52227L12.355 -5.40054e-07L7 4.94467L1.645 -7.19052e-08Z"
+                        fill="#374957"
+                      ></path>
+                    </svg>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              v-show="isDropdownOpen"
-              class="dropdown-options"
-            >
               <div
-                v-for="clinic in popupStore.clinicOptions"
-                :key="clinic.id"
-                class="dropdown-option-item"
-                :class="{ 'last-option': clinic.id === popupStore.clinicOptions.length }"
-                @click="selectOption(clinic)"
+                v-show="isDropdownOpen"
+                class="dropdown-options"
               >
-                <div class="option-content-with-icon">
-                  <div class="clinic-option-text">{{ clinic.name }}</div>
+                <div
+                  v-for="clinic in popupStore.clinicOptions"
+                  :key="clinic.id"
+                  class="dropdown-option-item"
+                  :class="{ 'last-option': clinic.id === popupStore.clinicOptions.length }"
+                  @click="selectOption(clinic)"
+                >
+                  <div class="option-content-with-icon">
+                    <div class="clinic-option-text">{{ clinic.name }}</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Continue Button -->
+        <!-- Continue Button -->
 
-    </div>
-    <div class="continue-section">
-        <button 
-          class="continue-button" 
-          :class="{ active: selectedOption }"
-          @click="handleContinue"
-          :disabled="!selectedOption"
-        >
-          Continue
-        </button>
+      </div>
+      <div class="continue-section">
+          <button 
+            class="continue-button" 
+            :class="{ active: selectedOption }"
+            @click="handleContinue"
+            :disabled="!selectedOption"
+          >
+            Continue
+          </button>
+        </div>
       </div>
   </div>
 </template>
@@ -111,89 +114,54 @@ const handleContinue = async () => {
 <style scoped>
 .welcome-login-container {
   display: flex;
-  padding: 0px 16px;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  flex: 1 0 0;
+  align-items: flex-end;
   align-self: stretch;
-  position: relative;
-  min-height: 100vh;
+  gap: 24px;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-@media (max-width: 991px) {
-  .welcome-login-container {
-    padding: 0px 12px;
-    gap: 12px;
-  }
-}
-
-@media (max-width: 640px) {
-  .welcome-login-container {
-    padding: 0px 8px;
-    gap: 8px;
-  }
-}
-
-.welcome-section {
+/* Welcome and Login Section */
+.welcome-login-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
-  position: relative;
+  gap: 16px;
+  width: 100%;
+}
+
+.welcome-text {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  width: 100%;
 }
 
 .welcome-title {
-  align-self: stretch;
-  color: var(--TrueBlack, #333);
-  text-align: center;
-  font-family: "IBM Plex Sans Hebrew", sans-serif;
-  font-size: 28px;
-  font-style: normal;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
   font-weight: 500;
-  line-height: 44px;
-  position: relative;
-}
-
-@media (max-width: 991px) {
-  .welcome-title {
-    font-size: 24px;
-    line-height: 36px;
-  }
-}
-
-@media (max-width: 640px) {
-  .welcome-title {
-    font-size: 20px;
-    line-height: 32px;
-  }
+  font-size: 28px;
+  line-height: 1.57em;
+  text-align: center;
+  color: #333333;
+  margin: 0;
 }
 
 .welcome-subtitle {
-  align-self: stretch;
-  color: #333;
-  text-align: center;
-  font-family: "IBM Plex Sans Hebrew", sans-serif;
-  font-size: 16px;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-  position: relative;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: 3.125%;
+  text-align: center;
+  color: #333333;
+  margin: 0;
 }
 
-@media (max-width: 991px) {
-  .welcome-subtitle {
-    font-size: 15px;
-    line-height: 22px;
-  }
-}
-
-@media (max-width: 640px) {
-  .welcome-subtitle {
-    font-size: 14px;
-    line-height: 20px;
-  }
-}
 
 .clinic-selection {
   display: flex;
@@ -205,17 +173,6 @@ const handleContinue = async () => {
   position: relative;
 }
 
-@media (max-width: 991px) {
-  .clinic-selection {
-    gap: 24px;
-  }
-}
-
-@media (max-width: 640px) {
-  .clinic-selection {
-    gap: 16px;
-  }
-}
 
 .input-section {
   display: flex;
@@ -227,7 +184,7 @@ const handleContinue = async () => {
   align-self: stretch;
   position: relative;
 }
-
+/* 
 @media (max-width: 991px) {
   .input-section {
     padding: 12px 0px;
@@ -240,7 +197,7 @@ const handleContinue = async () => {
     padding: 8px 0px;
     gap: 8px;
   }
-}
+} */
 
 .practice-field {
   display: flex;
@@ -284,11 +241,11 @@ const handleContinue = async () => {
   position: relative;
 }
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
   .practice-label {
     font-size: 12px;
   }
-}
+} */
 
 .dropdown-container {
   display: flex;
@@ -343,13 +300,13 @@ const handleContinue = async () => {
   padding: 0px 4px;
   gap: 8px;
 }
-
+/* 
 @media (max-width: 640px) {
   .selected-option {
     font-size: 14px;
     line-height: 20px;
   }
-}
+} */
 
 .dropdown-arrow {
   display: flex;
@@ -436,12 +393,12 @@ const handleContinue = async () => {
   gap: 8px;
 }
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
   .option-text {
     font-size: 14px;
     line-height: 20px;
   }
-}
+} */
 
 .option-content-with-icon {
   display: flex;
@@ -468,12 +425,12 @@ const handleContinue = async () => {
   padding: 0px 4px;
 }
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
   .clinic-option-text {
     font-size: 14px;
     line-height: 20px;
   }
-}
+} */
 
 .continue-section {
   display: flex;
