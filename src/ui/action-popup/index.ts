@@ -24,6 +24,16 @@ appRouter.addRoute({
 })
 
 appRouter.addRoute({
+  path: "/select-sync",
+  component: () => import("./pages/select-sync.vue"),
+})
+
+appRouter.addRoute({
+  path: "/connect-ehr",
+  component: () => import("./pages/connect-ehr.vue"),
+})
+
+appRouter.addRoute({
   path: "/enter-credential",
   component: () => import("./pages/enter-credential.vue"),
 })
@@ -45,9 +55,36 @@ appRouter.beforeEach((to, from, next) => {
   next()
 })
 
-const app = createApp(App).use(i18n).use(ui).use(pinia).use(appRouter)
+// Save route on every navigation using chrome.storage.local
+appRouter.afterEach((to) => {
+  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+    chrome.storage.local.set({ 'vibrant-popup-last-route': to.fullPath })
+  }
+})
 
-app.mount("#app")
+// Delay mounting the app until after last route is loaded and (if needed) restored
+if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+  chrome.storage.local.get('vibrant-popup-last-route', (result) => {
+    const lastRoute = result['vibrant-popup-last-route']
+    const mountApp = () => {
+      const app = createApp(App).use(i18n).use(ui).use(pinia).use(appRouter)
+      app.mount("#app")
+    }
+    if (
+      lastRoute &&
+      lastRoute !== window.location.pathname &&
+      lastRoute !== '/welcome-login'
+    ) {
+      appRouter.replace(lastRoute).finally(mountApp)
+    } else {
+      mountApp()
+    }
+  })
+} else {
+  // Fallback: mount immediately if chrome.storage.local is not available
+  const app = createApp(App).use(i18n).use(ui).use(pinia).use(appRouter)
+  app.mount("#app")
+}
 
 export default app
 
