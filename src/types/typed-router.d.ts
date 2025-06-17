@@ -19,6 +19,7 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/action-popup/': RouteRecordInfo<'/action-popup/', '/action-popup', Record<never, never>, Record<never, never>>,
+    '/action-popup/enter-credential': RouteRecordInfo<'/action-popup/enter-credential', '/action-popup/enter-credential', Record<never, never>, Record<never, never>>,
     '/action-popup/select-clinic': RouteRecordInfo<'/action-popup/select-clinic', '/action-popup/select-clinic', Record<never, never>, Record<never, never>>,
     '/action-popup/select-sync': RouteRecordInfo<'/action-popup/select-sync', '/action-popup/select-sync', Record<never, never>, Record<never, never>>,
     '/action-popup/welcome-login': RouteRecordInfo<'/action-popup/welcome-login', '/action-popup/welcome-login', Record<never, never>, Record<never, never>>,

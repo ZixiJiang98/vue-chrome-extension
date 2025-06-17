@@ -23,6 +23,11 @@ appRouter.addRoute({
   component: () => import("./pages/select-clinic.vue"),
 })
 
+appRouter.addRoute({
+  path: "/enter-credential",
+  component: () => import("./pages/enter-credential.vue"),
+})
+
 // Add navigation guard
 appRouter.beforeEach((to, from, next) => {
   const popupStore = usePopupStore()
