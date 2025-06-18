@@ -3,6 +3,8 @@ import { pinia } from "src/utils/pinia"
 import { appRouter } from "src/utils/router"
 import { createApp } from "vue"
 import App from "./app.vue"
+import ElementPlus from "element-plus"
+import "element-plus/dist/index.css"
 import ui from "@nuxt/ui/vue-plugin"
 import "./index.css"
 import { usePopupStore } from "../../stores/popup.store"
@@ -45,7 +47,12 @@ appRouter.beforeEach((to, from, next) => {
   next()
 })
 
-const app = createApp(App).use(i18n).use(ui).use(pinia).use(appRouter)
+const app = createApp(App)
+  .use(i18n)
+  .use(ElementPlus)
+  .use(ui)
+  .use(pinia)
+  .use(appRouter)
 
 app.mount("#app")
 

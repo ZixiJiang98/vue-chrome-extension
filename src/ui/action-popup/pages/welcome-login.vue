@@ -1,7 +1,5 @@
 <template>
   <div class="welcome-login-container">
-
-
     <!-- Welcome and Login Section -->
     <div class="welcome-login-section">
       <!-- Welcome Text -->
@@ -9,7 +7,6 @@
         <h1 class="welcome-title">Welcome!</h1>
         <p class="welcome-subtitle">Please sign in.</p>
       </div>
-
       <!-- Login Form -->
       <div class="login-form">
         <!-- Input Fields -->
@@ -17,62 +14,65 @@
           <!-- Username/Email Field -->
           <div class="input-field">
             <div class="field-label">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <svg 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none"
+              >
                 <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#374957"/>
               </svg>
               <span class="label-text">Vibrant Account</span>
             </div>
-            <div class="input-wrapper">
-              <input 
-                type="text" 
-                placeholder="Username or Email" 
-                class="text-input"
-                v-model="username"
-              />
-            </div>
+            <Input
+              v-model="username"
+              placeholder="Username or Email"
+            />
           </div>
-
           <!-- Password Field -->
           <div class="input-field">
             <div class="field-label">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <svg 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none"
+              >
                 <path d="M18 8H17V6C17 3.24 14.76 1 12 1S7 3.24 7 6V8H6C4.9 8 4 8.9 4 10V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V10C20 8.9 19.1 8 18 8ZM12 17C10.9 17 10 16.1 10 15S10.9 13 12 13S14 13.9 14 15S13.1 17 12 17ZM15.1 8H8.9V6C8.9 4.29 10.29 2.9 12 2.9S15.1 4.29 15.1 6V8Z" fill="#374957"/>
               </svg>
               <span class="label-text">Password</span>
             </div>
-            <div class="input-wrapper">
-              <input 
-                type="password" 
-                placeholder="Password" 
+            <!-- <div class="input-wrapper">
+              <input
+                type="password"
+                placeholder="Password"
                 class="text-input"
                 v-model="password"
               />
-            </div>
+            </div> -->
+            <Input 
+              v-model="password"
+              placeholder="Password"
+            />
           </div>
-
           <!-- Forgot Password Link -->
           <div class="forgot-password-wrapper">
-            <!-- <button class="forgot-password-link" @click="handleForgotPassword">
-              Forgot Password?
-            </button> -->
             <Button
               type="none-stroke"
               @click="handleForgotPassword"
-              >
+            >
               Forgot Password?
             </Button>
           </div>
         </div>
-
         <!-- Sign In Button -->
         <Button
           type="round"
           color-type="dark-blue"
           @click="handleSignIn"
-          >
+        >
           Sign In
         </Button>
-
       </div>
     </div>
   </div>
@@ -83,6 +83,7 @@ import { ref } from 'vue'
 import { usePopupStore } from '../../../stores/popup.store'
 import { useRouter } from 'vue-router'
 import Button from '../../../NewLibrary/Button.vue'
+import Input from '../../../NewLibrary/Input.vue'
 
 const popupStore = usePopupStore()
 const router = useRouter()
@@ -93,7 +94,6 @@ const password = ref('')
 const handleSignIn = () => {
   if (username.value && password.value) {
     popupStore.signIn(username.value, password.value)
-    // Navigate to select-clinic page after sign in
     router.push('/select-clinic')
   }
 }
