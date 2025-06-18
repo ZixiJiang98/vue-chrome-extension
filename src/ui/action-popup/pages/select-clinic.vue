@@ -4,7 +4,7 @@
         <!-- Welcome Text -->
       <div class="welcome-text">
         <h1 class="welcome-title">Welcome!</h1>
-        <p class="welcome-subtitle">Please sign in.</p>
+        <p class="welcome-subtitle">Select a clinic.</p>
       </div>
       <div class="clinic-selection">
         <div class="input-section">
@@ -63,7 +63,7 @@
         <!-- Continue Button -->
 
       </div>
-      <div class="continue-section">
+      <!-- <div class="continue-section">
           <button 
             class="continue-button" 
             :class="{ active: selectedOption }"
@@ -73,7 +73,15 @@
             Continue
           </button>
         </div>
-      </div>
+      </div> -->
+      <Button
+        type="round"
+        color-type="dark-blue"
+        @click="handleContinue"
+      >
+        Continue
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -81,6 +89,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePopupStore } from '../../../stores/popup.store'
+import Button from '../../../NewLibrary/Button.vue'
 
 const router = useRouter()
 const popupStore = usePopupStore()
@@ -132,6 +141,7 @@ const handleContinue = async () => {
   align-self: stretch;
   gap: 16px;
   width: 100%;
+  height: 306px;
 }
 
 .welcome-text {
