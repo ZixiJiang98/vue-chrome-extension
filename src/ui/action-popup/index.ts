@@ -38,23 +38,6 @@ appRouter.addRoute({
   component: () => import("./pages/enter-credential.vue"),
 })
 
-// Add navigation guard
-appRouter.beforeEach((to, from, next) => {
-  const popupStore = usePopupStore()
-  
-  // If user is not logged in and trying to access protected routes
-  if (!popupStore.user.username && to.path !== '/welcome-login') {
-    return next('/welcome-login')
-  }
-  
-  // If user is logged in but no clinic selected and trying to access main page
-  if (popupStore.user.username && !popupStore.selectedClinic && to.path === '/') {
-    return next('/select-clinic')
-  }
-  
-  next()
-})
-
 // Save route on every navigation using chrome.storage.local
 appRouter.afterEach((to) => {
   if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
@@ -62,31 +45,78 @@ appRouter.afterEach((to) => {
   }
 })
 
-// Delay mounting the app until after last route is loaded and (if needed) restored
-if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-  chrome.storage.local.get('vibrant-popup-last-route', (result) => {
-    const lastRoute = result['vibrant-popup-last-route']
-    const mountApp = () => {
-      const app = createApp(App).use(i18n).use(ui).use(pinia).use(appRouter)
-      app.mount("#app")
+// Delay mounting the app until after store hydration and last route is loaded
+async function bootstrap() {
+  // Create Pinia and store context before using store
+  const app = createApp(App).use(i18n).use(ui).use(pinia)
+  // Must install pinia before using store
+  app.use(pinia)
+  const popupStore = usePopupStore()
+
+  // Await hydration of all relevant state
+  await Promise.all([
+    popupStore.signedInPromise,
+    popupStore.userPromise,
+    popupStore.selectedClinicPromise,
+  ])
+
+  // Add navigation guard after state is ready
+  appRouter.beforeEach((to, from, next) => {
+    // If not signed in, always go to welcome-login
+    if (!popupStore.signedIn && to.path !== '/welcome-login') {
+      return next('/welcome-login')
     }
-    if (
-      lastRoute &&
-      lastRoute !== window.location.pathname &&
-      lastRoute !== '/welcome-login'
-    ) {
-      appRouter.replace(lastRoute).finally(mountApp)
-    } else {
-      mountApp()
+    // If signed in and navigating to /welcome-login, check for lastRoute
+    if (popupStore.signedIn && to.path === '/welcome-login') {
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        chrome.storage.local.get('vibrant-popup-last-route', (result) => {
+          const lastRoute = result['vibrant-popup-last-route']
+          if (
+            lastRoute &&
+            lastRoute !== '/welcome-login' &&
+            lastRoute !== window.location.pathname
+          ) {
+            return next(lastRoute)
+          } else {
+            return next()
+          }
+        })
+        return // Wait for async chrome.storage.local
+      }
     }
+    // If user is logged in but no clinic selected and trying to access main page
+    if (popupStore.user.username && !popupStore.selectedClinic && to.path === '/') {
+      return next('/select-clinic')
+    }
+    next()
   })
-} else {
-  // Fallback: mount immediately if chrome.storage.local is not available
-  const app = createApp(App).use(i18n).use(ui).use(pinia).use(appRouter)
-  app.mount("#app")
+
+  // Handle last route restoration before mounting
+  if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+    chrome.storage.local.get('vibrant-popup-last-route', (result) => {
+      const lastRoute = result['vibrant-popup-last-route']
+      const mountApp = () => {
+        app.use(appRouter)
+        app.mount("#app")
+      }
+      if (
+        lastRoute &&
+        lastRoute !== window.location.pathname &&
+        lastRoute !== '/welcome-login'
+      ) {
+        appRouter.replace(lastRoute).finally(mountApp)
+      } else {
+        mountApp()
+      }
+    })
+  } else {
+    // Fallback: mount immediately if chrome.storage.local is not available
+    app.use(appRouter)
+    app.mount("#app")
+  }
 }
 
-export default app
+bootstrap()
 
 self.onerror = function (message, source, lineno, colno, error) {
   console.info("Error: " + message)

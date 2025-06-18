@@ -11,6 +11,7 @@
         <button
           class="flex justify-center items-center gap-3 self-stretch rounded-[15px] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)]"
           style="padding:4px 19px; background:var(--VibrantDarkBlue, #004879);"
+          @click="handleSyncWebsite"
         >
           <span class="w-6 h-6 flex items-center justify-center">
             <!-- Figma SVG icon, white fill -->
@@ -34,18 +35,32 @@
           <span class="text-[#1e4670] font-normal text-[14px] leading-6 font-['IBM Plex Sans Hebrew',sans-serif]">Sync via API</span>
         </button>
       </div>
-        <div class="mt-2">
-          <router-link to="/action-popup/skip-page" class="text-[#999] font-medium text-[11px] leading-4 text-center underline cursor-pointer font-['IBM Plex Sans Hebrew',sans-serif]">Skip for now</router-link>
-        </div>
+      <div class="mt-2">
+        <router-link to="/action-popup/skip-page" class="text-[#999] font-medium text-[11px] leading-4 text-center underline cursor-pointer font-['IBM Plex Sans Hebrew',sans-serif]">Skip for now</router-link>
+      </div>
     </div>
+    <Syncing v-if="isLoading" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import Syncing from '../../common/syncing.vue'
+
+const isLoading = ref(false)
 const router = useRouter()
+
 const goToEnterCredential = () => {
   router.push('/connect-ehr')
+}
+
+function handleSyncWebsite() {
+  isLoading.value = true
+  setTimeout(() => {
+    isLoading.value = false
+    router.push('/action-popup/sync-finish')
+  }, 1000)
 }
 </script>
 

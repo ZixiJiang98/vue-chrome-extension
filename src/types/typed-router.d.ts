@@ -24,6 +24,7 @@ declare module 'vue-router/auto-routes' {
     '/action-popup/select-clinic': RouteRecordInfo<'/action-popup/select-clinic', '/action-popup/select-clinic', Record<never, never>, Record<never, never>>,
     '/action-popup/select-sync': RouteRecordInfo<'/action-popup/select-sync', '/action-popup/select-sync', Record<never, never>, Record<never, never>>,
     '/action-popup/skip-page': RouteRecordInfo<'/action-popup/skip-page', '/action-popup/skip-page', Record<never, never>, Record<never, never>>,
+    '/action-popup/sync-finish': RouteRecordInfo<'/action-popup/sync-finish', '/action-popup/sync-finish', Record<never, never>, Record<never, never>>,
     '/action-popup/welcome-login': RouteRecordInfo<'/action-popup/welcome-login', '/action-popup/welcome-login', Record<never, never>, Record<never, never>>,
     '/devtools-panel/': RouteRecordInfo<'/devtools-panel/', '/devtools-panel', Record<never, never>, Record<never, never>>,
     '/side-panel/': RouteRecordInfo<'/side-panel/', '/side-panel', Record<never, never>, Record<never, never>>,

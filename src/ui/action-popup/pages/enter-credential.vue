@@ -21,6 +21,7 @@
         <!-- Connect Button -->
         <button
           class="w-full flex justify-center items-center gap-1 rounded-[15px] bg-[#004879] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)] px-[38px] py-1 text-white text-[14px] font-medium font-['IBM Plex Sans Hebrew',sans-serif] leading-6 tracking-[0.15px]"
+          @click="handleConnect"
         >
           Connect
         </button>
@@ -46,9 +47,23 @@
         </div>
       </div>
     </div>
+    <Syncing v-if="isLoading" />
   </div>
 </template>
 
 <script setup lang="ts">
-// No logic required for static design
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import Syncing from '../../common/syncing.vue'
+
+const isLoading = ref(false)
+const router = useRouter()
+
+function handleConnect() {
+  isLoading.value = true
+  setTimeout(() => {
+    isLoading.value = false
+    router.push('/action-popup/sync-finish')
+  }, 1000)
+}
 </script> 

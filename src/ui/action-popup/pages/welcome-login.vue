@@ -52,9 +52,14 @@
 
           <!-- Forgot Password Link -->
           <div class="forgot-password-wrapper">
-            <button class="forgot-password-link" @click="handleForgotPassword">
+            <a
+              class="forgot-password-link"
+              href="https://portal.vibrant-wellness.com/#/forgot-password"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Forgot Password?
-            </button>
+            </a>
           </div>
         </div>
 
