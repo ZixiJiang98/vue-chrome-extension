@@ -255,3 +255,22 @@
   color: red;
   line-height: normal;
 }
+
+/* 去除新库 input 获得焦点时的蓝色 outline 和 box-shadow */
+.new-library-input-basic .el-input__inner:focus,
+.new-library-input-basic .el-input__inner:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.new-library-input-basic .el-input__wrapper:focus-within {
+  box-shadow: none !important;
+}
+
+/* 去除新库 input hover 时的灰色边框和阴影 */
+.new-library-input-basic .el-input__wrapper:hover,
+.new-library-input-basic .el-input__wrapper.is-focus,
+.new-library-input-basic .el-input__wrapper:focus-within {
+  border-color: var(--DividerGray, #C4C4C4) !important;
+  box-shadow: none !important;
+}

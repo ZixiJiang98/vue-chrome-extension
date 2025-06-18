@@ -6,6 +6,17 @@
         <h1 class="welcome-title">Welcome!</h1>
         <p class="welcome-subtitle">Select a clinic.</p>
       </div>
+
+      <SingleSelector 
+          class="w-1/2"
+          InputTitle="Required Information"
+          value-field="desc"
+          defaultOption="b"
+          :has-label="true"
+          :options="popupStore.clinicOptions"
+          @change="selectOption"
+        />
+
       <div class="clinic-selection">
         <div class="input-section">
           <div class="practice-field">
@@ -90,6 +101,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePopupStore } from '../../../stores/popup.store'
 import Button from '../../../NewLibrary/Button.vue'
+import SingleSelector from '../../../NewLibrary/SingleSelector.vue'
 
 const router = useRouter()
 const popupStore = usePopupStore()
