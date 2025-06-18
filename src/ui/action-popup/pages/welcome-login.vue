@@ -52,9 +52,15 @@
 
           <!-- Forgot Password Link -->
           <div class="forgot-password-wrapper">
-            <button class="forgot-password-link" @click="handleForgotPassword">
+            <!-- <button class="forgot-password-link" @click="handleForgotPassword">
               Forgot Password?
-            </button>
+            </button> -->
+            <Button
+              type="none-stroke"
+              @click="handleForgotPassword"
+              >
+              Forgot Password?
+            </Button>
           </div>
         </div>
 

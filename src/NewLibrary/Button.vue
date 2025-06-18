@@ -169,10 +169,6 @@ button {
   border-radius: 15px;
 }
 
-.is-shadow {
-  box-shadow: 0px 1px 3px 0px rgba(74, 74, 74, 0.25);
-}
-
 .heavy-weight {
   font-style: normal;
   font-weight: 600;
@@ -191,6 +187,7 @@ button {
 .dark-blue {
   background: var(--VibrantDarkBlue, #004879);
   color: #FFF;
+  border: none;
 }
 
 .sky-blue {
@@ -212,6 +209,7 @@ button {
   line-height: 14px;
   height: 26px;
   text-decoration-line: underline;
+  border: none;
 }
 
 .dark-blue-stroke {
