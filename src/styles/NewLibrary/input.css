@@ -269,8 +269,27 @@
 
 /* 去除新库 input hover 时的灰色边框和阴影 */
 .new-library-input-basic .el-input__wrapper:hover,
+.new-library-input-basic .el-input__wrapper:active,
+.new-library-input-basic .el-input__wrapper:focus,
 .new-library-input-basic .el-input__wrapper.is-focus,
 .new-library-input-basic .el-input__wrapper:focus-within {
   border-color: var(--DividerGray, #C4C4C4) !important;
+  box-shadow: none !important;
+}
+
+/* 强制所有状态下都只有 1px border，没有 box-shadow 和 outline，防止视觉粗细变化 */
+.new-library-input-basic .el-input__wrapper,
+.new-library-input-basic .el-input__wrapper:hover,
+.new-library-input-basic .el-input__wrapper:active,
+.new-library-input-basic .el-input__wrapper:focus,
+.new-library-input-basic .el-input__wrapper.is-focus,
+.new-library-input-basic .el-input__wrapper:focus-within {
+  border-width: 1px !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* 彻底覆盖 Element Plus 默认的 box-shadow 边框 */
+.el-input__wrapper {
   box-shadow: none !important;
 }

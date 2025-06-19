@@ -55,7 +55,11 @@
           <Button
             type="round"
             color-type="dark-blue-stroke"
+            class="watch-tutorial-button"
           >
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+            <path d="M9.5 7V15L16.5 11L9.5 7ZM21.5 3H3.5C2.4 3 1.5 3.9 1.5 5V17C1.5 18.1 2.4 19 3.5 19H8.5V21H16.5V19H21.5C22.6 19 23.5 18.1 23.5 17V5C23.5 3.9 22.6 3 21.5 3ZM21.5 17H3.5V5H21.5V17Z" fill="#374957"/>
+          </svg>
             Watch Tutorial
           </Button>
         </div>
@@ -145,6 +149,7 @@ import Input from '../../../NewLibrary/Input.vue'
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  align-items: center;
  }
 
  .help-section-container{
@@ -162,5 +167,16 @@ import Input from '../../../NewLibrary/Input.vue'
   flex-direction: column;
   justify-content: center;
   gap: 8px;
+ }
+
+ .watch-tutorial-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  cursor: pointer;
+  width: 220px;
+  align-items: center;
  }
 </style>
