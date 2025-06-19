@@ -104,4 +104,17 @@ export default {
 }
 </script>
 <style scoped>
+/* 只在键盘操作时显示 focus outline，鼠标点击时不显示蓝色边框 */
+.new-libary-single-selector:focus:not(:focus-visible),
+.new-libary-single-selector .el-input__inner:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 去除 el-select 被点击时的蓝色边框 */
+.new-libary-single-selector:focus,
+.new-libary-single-selector .el-input__inner:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
 </style>
