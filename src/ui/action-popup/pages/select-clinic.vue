@@ -103,8 +103,18 @@
         </div>
       </div> -->
       <Button
+        v-if="!selectedOption"
+        type="round"
+        class="sign-in-button"
+        @click="handleContinue"
+      >
+        Continue
+      </Button>
+      <Button
+        v-else
         type="round"
         color-type="dark-blue"
+        class="sign-in-button-lib"
         @click="handleContinue"
       >
         Continue
@@ -536,5 +546,57 @@ const handleContinue = async () => {
 
 .single-selector {
   width: 236px;
+}
+
+/* Sign In Button */
+.sign-in-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 16px;
+  height: 32px;
+  background: #C4C4C4;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0px 1px 3px 0px rgba(74, 74, 74, 0.25);
+  cursor: pointer;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.71em;
+  letter-spacing: 1.07%;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.sign-in-button:hover {
+  background: #B0B0B0;
+}
+
+.sign-in-button:active {
+  background: #A0A0A0;
+}
+
+.sign-in-button:disabled {
+  background: #E0E0E0;
+  cursor: not-allowed;
+}
+
+.input-height {
+  height: 40px;
+}
+
+.sign-in-button {
+  padding: 0px 16px;
+}
+
+.forgot-password-link {
+  height: 16px;
+}
+
+.sign-in-button-lib {
+  padding: 0px 16px;
 }
 </style>

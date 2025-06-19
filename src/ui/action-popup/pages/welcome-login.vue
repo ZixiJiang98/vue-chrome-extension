@@ -12,7 +12,7 @@
         <!-- Input Fields -->
         <div class="input-fields">
           <!-- Username/Email Field -->
-          <div class="input-field">
+          <div class="input-field mb-1">
             <div class="field-label">
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -33,6 +33,7 @@
             <Input
               v-model="username"
               placeholder="Username or Email"
+              class="input-height"
             />
           </div>
           <!-- Password Field -->
@@ -63,6 +64,7 @@
             <Input 
               v-model="password"
               placeholder="Password"
+              class="input-height"
             />
           </div>
           <!-- Forgot Password Link -->
@@ -70,21 +72,33 @@
             <Button
               type="none-stroke"
               @click="handleForgotPassword"
+              class="forgot-password-link"
             >
               Forgot Password?
             </Button>
           </div>
         </div>
-        <!-- Sign In Button -->
-        <Button
-          type="round"
-          color-type="dark-blue"
-          @click="handleSignIn"
-        >
-          Sign In
-        </Button>
       </div>
     </div>
+    <!-- Sign In Button -->
+    <Button
+      v-if="!username || !password"
+      type="round"
+      color-type="dark-blue"
+      @click="handleSignIn"
+      class="sign-in-button"
+    >
+      Sign In
+    </Button>
+    <Button
+      v-else
+      type="round"
+      color-type="dark-blue"
+      @click="handleSignIn"
+      class="sign-in-button-lib"
+    >
+      Sign In
+    </Button>
   </div>
 </template>
 
@@ -118,9 +132,9 @@ const handleForgotPassword = () => {
 .welcome-login-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   align-self: stretch;
-  gap: 24px;
+  gap: 32px;
   width: 100%;
   height: 100%;
   padding: 16px;
@@ -208,7 +222,7 @@ const handleForgotPassword = () => {
   flex-direction: column;
   align-items: center;
   align-self: stretch;
-  gap: 32px;
+  gap: 20px;
 }
 
 .input-fields {
@@ -341,5 +355,21 @@ const handleForgotPassword = () => {
 .sign-in-button:disabled {
   background: #E0E0E0;
   cursor: not-allowed;
+}
+
+.input-height {
+  height: 40px;
+}
+
+.sign-in-button {
+  padding: 0px 16px;
+}
+
+.forgot-password-link {
+  height: 16px;
+}
+
+.sign-in-button-lib {
+  padding: 0px 16px;
 }
 </style>
