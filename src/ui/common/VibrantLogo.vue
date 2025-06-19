@@ -36,7 +36,6 @@ export default {
   justify-content: center;
   align-items: center;
   align-self: stretch;
-  gap: 5.96px;
   width: 100%;
   height: auto;
 }
