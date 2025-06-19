@@ -10,14 +10,15 @@
       <SingleSelector 
           class="w-1/2"
           InputTitle="Required Information"
-          value-field="desc"
-          defaultOption="b"
+          value-field="id" 
           :has-label="true"
-          :options="popupStore.clinicOptions"
-          @change="selectOption"
+          :placeholder="'Choose a practice'"
+          :options="singleSelectorList"
+          v-model="selectedOption"
+          @change="handleSelectedOptionClick"
         />
 
-      <div class="clinic-selection">
+      <!-- <div class="clinic-selection">
         <div class="input-section">
           <div class="practice-field">
             <div class="practice-label-container">
@@ -74,9 +75,8 @@
             </div>
           </div>
         </div>
-        <!-- Continue Button -->
 
-      </div>
+      </div> -->
       <!-- <div class="continue-section">
           <button 
             class="continue-button" 
@@ -108,8 +108,36 @@ import SingleSelector from '../../../NewLibrary/SingleSelector.vue'
 
 const router = useRouter()
 const popupStore = usePopupStore()
-const selectedOption = ref("")
+const selectedOption = ref<SingleSelectorItem | null>(null)
 const isDropdownOpen = ref(false)
+
+interface ClinicOption {
+  id: number;
+  name: string;
+  address: string;
+}
+interface SingleSelectorItem {
+  id: number;
+  label: string;
+  desc: string;
+}
+
+// 将 popupStore.clinicOptions 转为 singleSelectorList 结构
+function convertToSingleSelectorList(clinicOptions: ClinicOption[]): SingleSelectorItem[] {
+  return clinicOptions.map((item) => ({
+    id: item.id,
+    label: item.name,
+    desc: item.address
+  }))
+}
+
+const singleSelectorList = computed(() => convertToSingleSelectorList(popupStore.clinicOptions))
+
+const handleSelectedOptionClick = (selectedOption: SingleSelectorItem) => { 
+  console.log(singleSelectorList,'singleSelectorList')
+  console.log(selectedOption,'selectedOption')
+}
+
 
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value

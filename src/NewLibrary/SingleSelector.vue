@@ -23,7 +23,7 @@
         class="new-libary-single-selector-dropdown"
         :key="idx"
         :label="item.label ? item.label : item[valueField]"
-        :value="item[valueField]"
+        :value="item.label"
       >
         <template #default>
           <slot name="option-left" :item="item">
