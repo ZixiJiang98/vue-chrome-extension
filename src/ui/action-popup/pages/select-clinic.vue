@@ -109,36 +109,23 @@ const handleContinue = async () => {
 </script>
 
 <style scoped>
-.welcome-login-container {
+.select-clinic-container {
   display: flex;
-  padding: 0px 16px;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   gap: 16px;
-  flex: 1 0 0;
-  align-self: stretch;
-  position: relative;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  padding:24px 32px;
+  box-sizing: border-box;
 }
 
-@media (max-width: 991px) {
-  .welcome-login-container {
-    padding: 0px 12px;
-    gap: 12px;
-  }
-}
-
-@media (max-width: 640px) {
-  .welcome-login-container {
-    padding: 0px 8px;
-    gap: 8px;
-  }
-}
 
 .welcome-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
   position: relative;
 }
@@ -292,20 +279,20 @@ const handleContinue = async () => {
 
 .dropdown-container {
   display: flex;
-  height: auto;
   flex-direction: column;
   align-items: flex-start;
   gap: -2px;
   align-self: stretch;
   border-radius: 4px;
   position: relative;
+  height: 40px;
 }
 
 .dropdown-trigger {
   display: flex;
-  height: 40px;
+  height: 24px;
   padding: 8px 16px;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 4px;
@@ -320,9 +307,9 @@ const handleContinue = async () => {
 
 .dropdown-option {
   display: flex;
-  padding: 0px 2px;
+  padding: 0 2px;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   align-self: stretch;
   border-radius: 4px;
   position: relative;
@@ -386,8 +373,8 @@ const handleContinue = async () => {
   display: flex;
   height: 40px;
   padding: 8px 16px;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
   align-self: stretch;
   border-right: 1px solid #c4c4c4;
@@ -445,8 +432,8 @@ const handleContinue = async () => {
 
 .option-content-with-icon {
   display: flex;
-  padding: 0px 2px;
-  align-items: flex-start;
+  padding: 0 2px;
+  align-items: center;
   gap: 10px;
   align-self: stretch;
   position: relative;
@@ -508,5 +495,46 @@ const handleContinue = async () => {
 
 .continue-button:not(:disabled):hover {
   background: #003d66;
+}
+
+/* Rotate arrow when dropdown open */
+.rotated {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
+}
+
+/* Continue button styling */
+.continue-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 16px;
+  height: 32px;
+  background: #C4C4C4;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 1px 3px rgba(74, 74, 74, 0.25);
+  color: #ffffff;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.continue-button.active {
+  background: #004879;
+}
+
+.continue-button.active:hover {
+  background: #063a5e;
+}
+
+.continue-button:disabled {
+  background: #E0E0E0;
+  cursor: not-allowed;
 }
 </style>

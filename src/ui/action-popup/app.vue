@@ -67,6 +67,11 @@ watch(() => popupStore.user.username, (newVal) => {
       />
     </div>
 
+    <!-- Watermark background overlay -->
+    <div class="watermark-overlay">
+      <div class="watermark-blob"></div>
+    </div>
+
     <!-- Main app content -->
     <UApp class="app-container">
       <div>
@@ -112,6 +117,7 @@ watch(() => popupStore.user.username, (newVal) => {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .logo-container {
@@ -120,5 +126,30 @@ watch(() => popupStore.user.username, (newVal) => {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
+}
+
+.watermark-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.70;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none; /* allow interactions pass-through */
+  z-index: 0; /* behind main content */
+}
+
+.watermark-blob {
+  width: 589px;
+  height: 658px;
+  opacity: 0.05;
+  background: #004879;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 </style>

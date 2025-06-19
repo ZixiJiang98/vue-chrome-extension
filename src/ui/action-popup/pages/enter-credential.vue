@@ -1,49 +1,38 @@
 <template>
-  <div class="w-full h-full flex flex-col items-center justify-center px-4">
-    <div class="w-full max-w-xs flex flex-col items-center justify-between gap-8">
+  <div class="container">
+    <div class="content">
       <!-- Credential Key Input -->
-      <div class="w-full flex flex-col gap-5 items-center justify-center">
-        <div class="w-full flex flex-col gap-1">
-          <div class="flex flex-row gap-1 items-center h-6">
-            <span class="w-6 h-6 flex items-center justify-center">
-              <img src="@/assets/password.png" alt="API Icon" class="w-6 h-6 object-contain" />
-            </span>
-            <span class="text-[#4a4a4a] font-bold text-[14px] font-['Lato',sans-serif]">Enter Credential Key</span>
-          </div>
-          <div class="relative w-full">
-            <input
-              class="w-full h-10 rounded border border-[#c9c9c9] bg-white px-3 py-2 text-[#333] text-[16px] font-normal font-['IBM Plex Sans Hebrew',sans-serif] tracking-[0.15px] focus:outline-none focus:border-[#004879]"
-              placeholder="ANALQ-12DM-HPLKQ-098-"
-              type="text"
-            />
-          </div>
+      <div class="credential-section">
+        <div class="credential-label">
+          <span class="icon">
+            <img src="@/assets/password.png" alt="API Icon" class="icon-img" />
+          </span>
+          <span class="label-text">Enter Credential Key</span>
         </div>
-        <!-- Connect Button -->
-        <button
-          class="w-full flex justify-center items-center gap-1 rounded-[15px] bg-[#004879] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)] px-[38px] py-1 text-white text-[14px] font-medium font-['IBM Plex Sans Hebrew',sans-serif] leading-6 tracking-[0.15px]"
-          @click="handleConnect"
-        >
-          Connect
-        </button>
+        <div class="input-wrapper">
+          <input
+            class="text-input"
+            placeholder="ANALQ-12DM-HPLKQ-098-"
+            type="text"
+          />
+        </div>
       </div>
+      <!-- Connect Button -->
+      <button class="primary-btn" @click="handleConnect">Connect</button>
       <!-- Help Section -->
-      <div class="w-full flex flex-col items-center gap-5 px-2">
-        <div class="text-[#333] font-normal text-[14px] leading-[20px] text-center tracking-[0.25px] font-['IBM Plex Sans Hebrew',sans-serif]">
-          Have problem connecting?
-        </div>
-        <button
-          class="flex justify-center items-center gap-3 w-full rounded-[15px] border border-[#1e4670] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)] bg-white py-1"
-        >
-          <span class="w-6 h-6 flex items-center justify-center">
+      <div class="help-section">
+        <div class="help-text">Have problem connecting?</div>
+        <button class="secondary-btn">
+          <span class="icon">
             <!-- Play icon -->
-            <svg viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" width="24" height="24" style="width:100%;height:100%;">
+            <svg viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-svg" width="24" height="24" style="width:100%;height:100%;">
               <path d="M8 4V12L15 8L8 4ZM20 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H7V18H15V16H20C21.1 16 22 15.1 22 14V2C22 0.9 21.1 0 20 0ZM20 14H2V2H20V14Z" fill="#374957"/>
             </svg>
           </span>
-          <span class="text-[#1e4670] font-normal text-[14px] leading-6 font-['IBM Plex Sans Hebrew',sans-serif]">Watch Tutorial</span>
+          <span class="tutorial-text">Watch Tutorial</span>
         </button>
-        <div class="mt-2">
-          <router-link to="/action-popup/skip-page" class="text-[#999] font-medium text-[11px] leading-4 text-center underline cursor-pointer font-['IBM Plex Sans Hebrew',sans-serif] opacity-70">Skip for now</router-link>
+        <div class="skip-wrapper">
+          <router-link to="/action-popup/skip-page" class="skip-link">Skip for now</router-link>
         </div>
       </div>
     </div>
@@ -66,4 +55,183 @@ function handleConnect() {
     router.push('/action-popup/sync-finish')
   }, 1000)
 }
-</script> 
+</script>
+
+<style scoped>
+/* Container */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px; /* px-4 */
+  box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+  max-width: 320px; /* max-w-xs */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px; /* gap-8 */
+}
+
+/* Credential Section */
+.credential-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* gap-5 */
+  align-items: center;
+  justify-content: center;
+}
+
+.credential-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  height: 24px; /* h-6 */
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.label-text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+/* Input */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.text-input {
+  width: 100%;
+  height: 40px; /* h-10 */
+  padding: 8px 12px; /* px-3 py-2 */
+  border: 1px solid #c9c9c9;
+  border-radius: 4px;
+  background: #ffffff;
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+  color: #333333;
+  letter-spacing: 0.15px;
+  box-sizing: border-box;
+}
+
+.text-input::placeholder {
+  color: #999999;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #004879;
+}
+
+/* Buttons */
+.primary-btn {
+  width: 100%;
+  padding: 4px 38px;
+  background: #004879;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 1px 3px rgba(74, 74, 74, 0.25);
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+.help-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.help-text {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: #333333;
+  text-align: center;
+}
+
+.secondary-btn {
+  width: 100%;
+  padding: 4px 0; /* py-1 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* gap-3 */
+  background: #ffffff;
+  border: 1px solid #1e4670;
+  border-radius: 15px;
+  box-shadow: 0px 1px 3px rgba(74, 74, 74, 0.25);
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: #f8f8f8;
+}
+
+.icon-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.tutorial-text {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #1e4670;
+}
+
+.skip-wrapper {
+  margin-top: 8px;
+}
+
+.skip-link {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  text-decoration: underline;
+  color: #999999;
+  opacity: 0.7;
+}
+</style> 

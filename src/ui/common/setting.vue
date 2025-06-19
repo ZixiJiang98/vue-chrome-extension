@@ -1,15 +1,48 @@
 <template>
   <div class="settings-content">
     <div class="settings-actions">
-      <button class="settings-action" @click="$emit('switch-account')">Switch Account</button>
-      <button class="settings-action" @click="$emit('switch-clinic')">Switch Clinic</button>
-      <button class="settings-action" @click="$emit('switch-sync')" :disabled="!canSwitchSync">Switch Sync Method</button>
-      <button class="settings-action" @click="$emit('feedback')">Write a Feedback</button>
+      <button
+        class="settings-action"
+        @click="$emit('switch-account')"
+      >
+        Switch Account
+      </button>
+      <button
+        class="settings-action"
+        @click="$emit('switch-clinic')"
+      >
+        Switch Clinic
+      </button>
+      <button
+        class="settings-action"
+        @click="$emit('switch-sync')"
+        :disabled="!canSwitchSync"
+      >
+        Switch Sync Method
+      </button>
+      <button
+        class="settings-action"
+        @click="$emit('feedback')"
+      >
+        Write a Feedback
+      </button>
     </div>
-    <button class="settings-back" @click="$emit('close')">
+    <button
+      class="settings-back"
+      @click="$emit('close')"
+    >
       <span class="back-icon">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 5.25H2.8725L7.065 1.0575L6 0L0 6L6 12L7.0575 10.9425L2.8725 6.75H12V5.25Z" fill="white"/>
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 5.25H2.8725L7.065 1.0575L6 0L0 6L6 12L7.0575 10.9425L2.8725 6.75H12V5.25Z"
+            fill="white"
+          />
         </svg>
       </span>
       <span class="back-text">Back</span>
@@ -18,8 +51,13 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps } from 'vue'
-defineEmits(['close', 'switch-account', 'switch-clinic', 'switch-sync', 'feedback'])
+defineEmits([
+  "close",
+  "switch-account",
+  "switch-clinic",
+  "switch-sync",
+  "feedback",
+])
 const props = defineProps<{ canSwitchSync: boolean }>()
 </script>
 
@@ -49,7 +87,7 @@ const props = defineProps<{ canSwitchSync: boolean }>()
   align-items: center;
 }
 .settings-action {
-  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
   font-weight: 500;
   font-size: 14px;
   color: #fff;
@@ -63,7 +101,7 @@ const props = defineProps<{ canSwitchSync: boolean }>()
   transition: background 0.15s;
 }
 .settings-action:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 .settings-action:disabled {
   opacity: 0.4;
@@ -73,7 +111,7 @@ const props = defineProps<{ canSwitchSync: boolean }>()
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-family: "IBM Plex Sans Hebrew", sans-serif;
   font-weight: 500;
   font-size: 11px;
   color: #fff;
@@ -87,7 +125,7 @@ const props = defineProps<{ canSwitchSync: boolean }>()
   transition: background 0.15s;
 }
 .settings-back:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 .back-icon {
   display: flex;
@@ -102,4 +140,4 @@ const props = defineProps<{ canSwitchSync: boolean }>()
   letter-spacing: 0.5px;
   color: #fff;
 }
-</style> 
+</style>

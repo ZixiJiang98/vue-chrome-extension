@@ -35,10 +35,9 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  align-self: stretch;
   gap: 5.96px;
-  width: 100%;
-  height: auto;
+  width: 268px; /* Figma width */
+  height: 20px; /* Fixed height as per spec */
 }
 
 .logo-wrapper {
@@ -51,8 +50,8 @@ export default {
 }
 
 .logo-image {
-  width: 22.5px;
-  height: auto;
+  height: 100%; /* scale to 20px */
+  width: auto;
   object-fit: contain;
 }
 

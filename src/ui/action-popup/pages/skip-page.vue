@@ -1,28 +1,14 @@
 <template>
-  <div class="w-full h-full flex flex-col items-center justify-center px-4">
-    <div class="w-full max-w-xs flex flex-col items-center gap-4">
-      <div class="w-full flex flex-col items-center">
-        <div class="text-[#333] font-medium text-[24px] leading-[40px] text-center font-['IBM Plex Sans Hebrew',sans-serif] w-[244px]">
-          Connection provides a better experience.
-        </div>
-        <div class="text-[#333] font-normal text-[16px] leading-[24px] text-center tracking-[0.25px] font-['IBM Plex Sans Hebrew',sans-serif] w-full mt-2">
-          Select a way to synchronize data between EHR and Vibrant. You can switch the method in settings later.
-        </div>
+  <div class="container">
+    <div class="content">
+      <div class="description-section">
+        <div class="title">Connection provides a better experience.</div>
+        <div class="subtitle">Select a way to synchronize data between EHR and Vibrant. You can switch the method in settings later.</div>
       </div>
-      <div class="flex flex-col gap-4 items-center justify-center w-full mt-4">
-        <div class="w-[140px] flex flex-col gap-4 items-center">
-          <button
-            class="w-full rounded-[15px] bg-[#004879] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)] py-1 flex items-center justify-center px-[43px]"
-            @click="goToSelectSync"
-          >
-            <span class="text-white font-medium text-[14px] leading-6 font-['IBM Plex Sans Hebrew',sans-serif] tracking-[0.15px]">Connect</span>
-          </button>
-          <button
-            class="w-full rounded-[15px] bg-white border border-[#1e4670] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)] py-1 flex items-center justify-center relative px-[25px]"
-            @click="closePopup"
-          >
-            <span class="text-[#1e4670] font-normal text-[14px] leading-6 font-['IBM Plex Sans Hebrew',sans-serif] tracking-[0.25px]">Continue Skip</span>
-          </button>
+      <div class="button-wrap">
+        <div class="button-group">
+          <button class="primary-btn" @click="goToSelectSync">Connect</button>
+          <button class="secondary-btn" @click="closePopup">Continue Skip</button>
         </div>
       </div>
     </div>
@@ -38,4 +24,100 @@ const goToSelectSync = () => {
 const closePopup = () => {
   window.close()
 }
-</script> 
+</script>
+
+<style scoped>
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.description-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  color: #333333;
+  text-align: center;
+  width: 244px;
+}
+
+.subtitle {
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  color: #333333;
+  text-align: center;
+}
+
+.button-wrap {
+  width: 100%;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.button-group {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 4px 0;
+  background: #004879;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 1px 3px rgba(74, 74, 74, 0.25);
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  width: 100%;
+  padding: 4px 0;
+  background: #ffffff;
+  color: #1e4670;
+  border: 1px solid #1e4670;
+  border-radius: 15px;
+  box-shadow: 0px 1px 3px rgba(74, 74, 74, 0.25);
+  font-family: 'IBM Plex Sans Hebrew', sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  cursor: pointer;
+  position: relative;
+}
+</style> 

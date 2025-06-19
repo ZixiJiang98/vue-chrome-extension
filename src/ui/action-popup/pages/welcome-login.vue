@@ -64,7 +64,7 @@
         </div>
 
         <!-- Sign In Button -->
-        <button class="sign-in-button" @click="handleSignIn">
+        <button :class="['sign-in-button', { enabled: canSignIn }]" :disabled="!canSignIn" @click="handleSignIn">
           Sign In
         </button>
       </div>
@@ -73,9 +73,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { usePopupStore } from '../../../stores/popup.store'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { usePopupStore } from '../../../stores/popup.store'
 
 const popupStore = usePopupStore()
 const router = useRouter()
@@ -83,12 +83,14 @@ const router = useRouter()
 const username = ref('')
 const password = ref('')
 
+// Disable Sign-In button until both fields have a value
+const canSignIn = computed(() => username.value.trim() !== '' && password.value.trim() !== '')
+
 const handleSignIn = () => {
-  if (username.value && password.value) {
-    popupStore.signIn(username.value, password.value)
-    // Navigate to select-clinic page after sign in
-    router.push('/select-clinic')
-  }
+  if (!canSignIn.value) return
+
+  popupStore.signIn(username.value, password.value)
+  router.push('/select-clinic')
 }
 
 const handleForgotPassword = () => {
@@ -98,15 +100,16 @@ const handleForgotPassword = () => {
 </script>
 
 <style scoped>
+/* Root container */
 .welcome-login-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  align-self: stretch;
+  align-items: center; /* centre the whole card on the x-axis */
+  justify-content: flex-start;
   gap: 24px;
   width: 100%;
   height: 100%;
-  padding: 16px;
+  padding: 0px 32px;
   box-sizing: border-box;
 }
 
@@ -152,10 +155,10 @@ const handleForgotPassword = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-self: stretch;
   gap: 16px;
-  padding: 0 16px;
   width: 100%;
+  max-width: 360px; /* match Figma card width */
+  margin: auto;
 }
 
 .welcome-text {
@@ -179,8 +182,8 @@ const handleForgotPassword = () => {
   font-family: 'IBM Plex Sans Hebrew', sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.5em;
-  letter-spacing: 3.125%;
+  line-height: 24px; /* 1.5em */
+  letter-spacing: 0.5px; /* according to Figma Web_LargeBody_16 */
   text-align: center;
   color: #333333;
   margin: 0;
@@ -215,10 +218,12 @@ const handleForgotPassword = () => {
 .field-label {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 4px;
   height: 24px;
+  padding-left: 12px;
+  box-sizing: border-box;
 }
 
 .label-text {
@@ -248,7 +253,7 @@ const handleForgotPassword = () => {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5em;
-  letter-spacing: 0.94%;
+  letter-spacing: 0.15px; /* W&M_InputField_Content */
   color: #999999;
   border: none;
   outline: none;
@@ -300,30 +305,26 @@ const handleForgotPassword = () => {
   gap: 4px;
   padding: 4px 16px;
   height: 32px;
-  background: #C4C4C4;
+  background: #C4C4C4; /* disabled default */
   border-radius: 15px;
   border: none;
-  box-shadow: 0px 1px 3px 0px rgba(74, 74, 74, 0.25);
+  box-shadow: 0px 1px 3px rgba(74, 74, 74, 0.25);
   cursor: pointer;
   font-family: 'IBM Plex Sans Hebrew', sans-serif;
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.71em;
-  letter-spacing: 1.07%;
+  line-height: 24px;
+  letter-spacing: 0.15px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
+  transition: background 0.2s ease;
 }
 
-.sign-in-button:hover {
-  background: #B0B0B0;
+.sign-in-button.enabled {
+  background: #004879;
 }
 
-.sign-in-button:active {
-  background: #A0A0A0;
-}
-
-.sign-in-button:disabled {
-  background: #E0E0E0;
-  cursor: not-allowed;
+.sign-in-button.enabled:hover {
+  background: #063a5e;
 }
 </style>
