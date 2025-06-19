@@ -38,6 +38,7 @@ export default {
   align-self: stretch;
   width: 100%;
   height: auto;
+  gap: 1px;
 }
 
 .logo-wrapper {
