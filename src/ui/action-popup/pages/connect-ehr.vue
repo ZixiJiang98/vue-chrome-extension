@@ -10,6 +10,7 @@
       <div class="flex flex-col gap-4 w-full">
         <button
           class="flex justify-center items-center gap-2 w-full rounded-[15px] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)] bg-[#004879] py-2"
+          style="cursor: pointer;"
           @click="goToEnterCredential"
         >
           <span class="text-white text-[20px] font-bold tracking-widest">***</span>
@@ -17,6 +18,7 @@
         </button>
         <button
           class="flex justify-center items-center gap-2 w-full rounded-[15px] border border-[#1e4670] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)] bg-white py-2"
+          style="cursor: pointer;"
         >
           <span class="w-6 h-6 flex items-center justify-center">
             <!-- Play icon -->

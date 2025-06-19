@@ -598,5 +598,6 @@ const handleContinue = async () => {
 
 .sign-in-button-lib {
   padding: 0px 16px;
+  cursor: pointer;
 }
 </style>

@@ -12,6 +12,7 @@
           class="credential-button"
           type="round"
           color-type="dark-blue"
+          style="cursor: pointer;"
           @click="goToSelectSync"
         >
           Connect
@@ -20,6 +21,7 @@
           class="credential-button"
           type="round"
           color-type="dark-blue-stroke"
+          style="cursor: pointer;"
           @click="closePopup"
         >
           Continue Skip

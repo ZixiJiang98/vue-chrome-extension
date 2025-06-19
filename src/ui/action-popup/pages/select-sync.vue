@@ -50,7 +50,7 @@
           Sync via API
         </Button>
         <div>
-          <a class="skip-for-now-button">Skip for now</a>
+          <router-link to="/action-popup/skip-page" class="skip-for-now-button">Skip for now</router-link>
         </div>
       </div>
     </div>

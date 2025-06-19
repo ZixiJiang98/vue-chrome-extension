@@ -71,6 +71,7 @@
           <div class="forgot-password-wrapper">
             <Button
               type="none-stroke"
+              style="cursor: pointer;"
               @click="handleForgotPassword"
               class="forgot-password-link"
             >
@@ -85,6 +86,7 @@
       v-if="!username || !password"
       type="round"
       color-type="dark-blue"
+      style="cursor: pointer;"
       @click="handleSignIn"
       class="sign-in-button"
     >
@@ -94,6 +96,7 @@
       v-else
       type="round"
       color-type="dark-blue"
+      style="cursor: pointer;"
       @click="handleSignIn"
       class="sign-in-button-lib"
     >
