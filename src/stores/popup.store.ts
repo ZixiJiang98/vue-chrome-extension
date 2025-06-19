@@ -1,12 +1,12 @@
 export const usePopupStore = defineStore("popup", () => {
   // State for authentication
-  const { data: signedIn } = useBrowserLocalStorage("signedIn", false)
+  const { data: signedIn, promise: signedInPromise } = useBrowserLocalStorage("signedIn", false)
   
   // State for clinic selection
-  const { data: selectedClinic } = useBrowserLocalStorage("selectedClinic", "")
+  const { data: selectedClinic, promise: selectedClinicPromise } = useBrowserLocalStorage("selectedClinic", "")
   
   // User data (optional, for when signed in)
-  const { data: user } = useBrowserLocalStorage<{
+  const { data: user, promise: userPromise } = useBrowserLocalStorage<{
     username?: string
     email?: string
   }>("user", {})
@@ -40,8 +40,11 @@ export const usePopupStore = defineStore("popup", () => {
 
   return {
     signedIn,
+    signedInPromise,
     selectedClinic,
+    selectedClinicPromise,
     user,
+    userPromise,
     clinicOptions,
     signIn,
     signOut,

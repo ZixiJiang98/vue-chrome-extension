@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import VibrantLogo from "../common/VibrantLogo.vue"
 import UserHeader from "../common/UserHeader.vue"
+import Setting from '../common/setting.vue'
 import { usePopupStore } from "../../stores/popup.store"
 import { useRouter } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const popupStore = usePopupStore()
 const router = useRouter()
 
+const showSettings = ref(false)
+const localUsername = ref('')
+
 const handleSettings = () => {
-  // TODO: Implement settings functionality
-  console.log('Settings clicked from header')
+  showSettings.value = true
 }
 
 const handleClose = () => {
@@ -18,10 +21,36 @@ const handleClose = () => {
   window.close()
 }
 
+function handleSwitchAccount() {
+  popupStore.signOut()
+  showSettings.value = false
+  router.push('/welcome-login')
+}
+
+function handleSwitchClinic() {
+  showSettings.value = false
+  router.push('/select-clinic')
+}
+
+function handleSwitchSync() {
+  showSettings.value = false
+  router.push('/select-sync')
+}
+
 onMounted(() => {
   // If user is logged in but no clinic is selected, redirect to select-clinic
   if (popupStore.user.username && !popupStore.selectedClinic) {
     router.push('/select-clinic')
+  }
+  // Initialize localUsername if already signed in
+  if (popupStore.user.username) {
+    localUsername.value = popupStore.user.username
+  }
+})
+
+watch(() => popupStore.user.username, (newVal) => {
+  if (newVal) {
+    localUsername.value = newVal
   }
 })
 </script>
@@ -31,7 +60,7 @@ onMounted(() => {
     <!-- User Header at the top -->
     <div class="header-container">
       <UserHeader 
-        :username="popupStore.user.username || 'Vibrant IT3'"
+        :username="localUsername || 'Vibrant IT3'"
         :clinic-name="popupStore.selectedClinic || 'Clinic 3333'"
         @settings-click="handleSettings"
         @close-click="handleClose"
@@ -44,6 +73,16 @@ onMounted(() => {
         <RouterView />
       </div>
     </UApp>
+
+    <!-- Settings overlay -->
+    <Setting
+      v-if="showSettings"
+      @close="showSettings = false"
+      @switch-account="handleSwitchAccount"
+      @switch-clinic="handleSwitchClinic"
+      @switch-sync="handleSwitchSync"
+      :can-switch-sync="Boolean(popupStore.signedIn && popupStore.selectedClinic)"
+    />
 
     <!-- VibrantLogo positioned at bottom center -->
     <div class="logo-container">
