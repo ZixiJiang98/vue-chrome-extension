@@ -1,0 +1,31 @@
+/* custom style for paginations */
+.new-library-page .el-pagination {
+  margin-top: 2px;
+  font-size: 14px;
+  font-family: Roboto;
+  font-weight: normal;
+  padding-bottom: 5px;
+}
+
+.new-library-page .el-pager li{
+  min-height: 22px;
+  min-width: 22px;
+  margin: 0 5px;
+}
+
+.new-library-page .el-pager li.number {
+  font-size: 14px;
+  height: 20px;
+  width: 20px;
+  line-height: 16px;
+}
+
+.new-library-page .el-pager li.is-active {
+  background-color: var(--color-Darkblue-000, #1E4670);
+  color: #FFFFFF;
+  font-size: 14px;
+  border-radius: 50%;
+  padding: 10px;
+  text-align: center;
+}
+/* end */

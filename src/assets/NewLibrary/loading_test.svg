@@ -1,0 +1,7 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fixed Half Circle -->
+  <rect x="17.5" y="17.5" width="15" height="15" fill="blue" class="not-rotate"/>
+  
+  <!-- Rotating Square -->
+  <rect x="10" y="10" width="30" height="30" stroke="#004879" stroke-width="3" fill="none" class="should-rotate"/>
+</svg>

@@ -1,42 +1,38 @@
 <template>
   <div class="w-full h-full flex items-center justify-center">
-    <div class="w-full max-w-xs flex flex-col items-center gap-6">
-      <div class="text-[#333] font-medium text-[28px] leading-[44px] text-center font-['IBM Plex Sans Hebrew',sans-serif]">
+    <div class="sync-section-container">
+      <div class="title-text">
         Great Job!
       </div>
-      <div class="text-[#333] font-normal text-[16px] leading-[24px] text-center tracking-[0.25px] font-['IBM Plex Sans Hebrew',sans-serif]">
+      <div class="subtitle-text">
         Select a way to synchronize data between EHR and Vibrant. You can switch the method in settings later.
       </div>
-      <div class="flex flex-col gap-[18px] w-[200px]">
-        <button
-          class="flex justify-center items-center gap-3 self-stretch rounded-[15px] shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)]"
-          style="padding:4px 19px; background:var(--VibrantDarkBlue, #004879);"
+      <div class="buttons-container">
+        <Button
+          class="credential-button"
+          type="round"
+          color-type="dark-blue"
           @click="handleSyncWebsite"
         >
-          <span class="w-6 h-6 flex items-center justify-center">
-            <!-- Figma SVG icon, white fill -->
-            <svg viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6">
-              <path d="M8 3V0L4 4L8 8V5C11.31 5 14 7.69 14 11C14 12.01 13.75 12.97 13.3 13.8L14.76 15.26C15.54 14.03 16 12.57 16 11C16 6.58 12.42 3 8 3ZM8 17C4.69 17 2 14.31 2 11C2 9.99 2.25 9.03 2.7 8.2L1.24 6.74C0.46 7.97 0 9.43 0 11C0 15.42 3.58 19 8 19V22L12 18L8 14V17Z" fill="white"/>
-            </svg>
-          </span>
-          <span class="text-white font-medium text-[14px] leading-6 font-['IBM Plex Sans Hebrew',sans-serif]">Sync via Website</span>
-        </button>
-        <button
-          class="flex justify-center items-center gap-3 self-stretch rounded-[15px] border shadow-[0px_1px_3px_0px_rgba(74,74,74,0.25)]"
-          style="padding:4px 38px; border:1px solid #1E4670; background:#FFF;"
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+          <path d="M12.5 4V1L8.5 5L12.5 9V6C15.81 6 18.5 8.69 18.5 12C18.5 13.01 18.25 13.97 17.8 14.8L19.26 16.26C20.04 15.03 20.5 13.57 20.5 12C20.5 7.58 16.92 4 12.5 4ZM12.5 18C9.19 18 6.5 15.31 6.5 12C6.5 10.99 6.75 10.03 7.2 9.2L5.74 7.74C4.96 8.97 4.5 10.43 4.5 12C4.5 16.42 8.08 20 12.5 20V23L16.5 19L12.5 15V18Z" fill="white"/>
+        </svg>
+          Sync via Website
+        </Button>
+        <Button
+          class="credential-button"
+          type="round"
+          color-type="dark-blue-stroke"
           @click="goToEnterCredential"
         >
-          <span class="w-6 h-6 flex items-center justify-center">
-            <!-- Figma SVG icon for API, #374957 fill -->
-            <svg viewBox="0 0 22 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6">
-              <path d="M1 10H21V12H1V10ZM2.15 5.95L3 4.47L3.85 5.95L5.15 5.2L4.3 3.72H6V2.22H4.3L5.15 0.75L3.85 0L3 1.47L2.15 0L0.85 0.75L1.7 2.22H0V3.72H1.7L0.85 5.2L2.15 5.95ZM8.85 5.2L10.15 5.95L11 4.47L11.85 5.95L13.15 5.2L12.3 3.72H14V2.22H12.3L13.15 0.75L11.85 0L11 1.47L10.15 0L8.85 0.75L9.7 2.22H8V3.72H9.7L8.85 5.2ZM22 2.22H20.3L21.15 0.75L19.85 0L19 1.47L18.15 0L16.85 0.75L17.7 2.22H16V3.72H17.7L16.85 5.2L18.15 5.95L19 4.47L19.85 5.95L21.15 5.2L20.3 3.72H22V2.22Z" fill="#374957"/>
-            </svg>
-          </span>
-          <span class="text-[#1e4670] font-normal text-[14px] leading-6 font-['IBM Plex Sans Hebrew',sans-serif]">Sync via API</span>
-        </button>
-      </div>
-      <div class="mt-2">
-        <router-link to="/action-popup/skip-page" class="text-[#999] font-medium text-[11px] leading-4 text-center underline cursor-pointer font-['IBM Plex Sans Hebrew',sans-serif]">Skip for now</router-link>
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+            <path d="M2.5 16H22.5V18H2.5V16ZM3.65 11.95L4.5 10.47L5.35 11.95L6.65 11.2L5.8 9.72H7.5V8.22H5.8L6.65 6.75L5.35 6L4.5 7.47L3.65 6L2.35 6.75L3.2 8.22H1.5V9.72H3.2L2.35 11.2L3.65 11.95ZM10.35 11.2L11.65 11.95L12.5 10.47L13.35 11.95L14.65 11.2L13.8 9.72H15.5V8.22H13.8L14.65 6.75L13.35 6L12.5 7.47L11.65 6L10.35 6.75L11.2 8.22H9.5V9.72H11.2L10.35 11.2ZM23.5 8.22H21.8L22.65 6.75L21.35 6L20.5 7.47L19.65 6L18.35 6.75L19.2 8.22H17.5V9.72H19.2L18.35 11.2L19.65 11.95L20.5 10.47L21.35 11.95L22.65 11.2L21.8 9.72H23.5V8.22Z" fill="#374957"/>
+          </svg>
+          Sync via API
+        </Button>
+        <div>
+          <router-link to="/action-popup/skip-page" class="skip-for-now-button">Skip for now</router-link>
+        </div>
       </div>
     </div>
     <Syncing v-if="isLoading" />
@@ -44,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+import Button from '../../../NewLibrary/Button.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Syncing from '../../common/syncing.vue'
@@ -65,3 +62,93 @@ function handleSyncWebsite() {
 </script>
 
 <!-- No custom styles needed, all handled by Tailwind and inline style for the primary and secondary button -->
+ <style scoped>
+ .sync-section-container {
+  width: 236px;
+  height: 276px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;  
+ }
+
+ .title-text {
+  color: var(--TrueBlack, #333);
+  text-align: center;
+
+  /* Web_XSDisplay_28 */
+  font-family: "IBM Plex Sans Hebrew";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 44px; /* 157.143% */
+ }
+
+ .subtitle-text  {
+  color: var(--TrueBlack, #333);
+  text-align: center;
+
+  /* Mobile_LargeBody_16 */
+  font-family: "IBM Plex Sans Hebrew";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.25px;
+  margin-top: 8px;
+ }
+
+ .buttons-container {
+  gap: 18px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .skip-for-now-button {
+  color: var(--TrueBlack, #333);
+  text-align: center;
+
+  /* Mobile_LargeBody_16 */
+  font-family: "IBM Plex Sans Hebrew";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.25px;
+  margin-top: 8px;
+  text-decoration: underline;
+  cursor: pointer;
+ }
+
+ .skip-for-now-button {
+  color: var(--ContentMediumGrey, #999);
+  text-align: center;
+
+  /* Web_SmallLable_11 */
+  font-family: "IBM Plex Sans Hebrew";
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 145.455% */
+  letter-spacing: 0.5px;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+.credential-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  cursor: pointer;
+}
+
+</style>

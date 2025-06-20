@@ -1,0 +1,57 @@
+.new-library-tabs.el-tabs {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.new-library-tabs .el-tabs__header {
+  color: var(--color-Grey-Grey-97, #979797);
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  
+  border: none;
+  height: 40px;
+  border-bottom: 1px solid var(--color-Grey-Grey-E6, #E6E6E6);
+  margin-bottom: 0;
+
+  position: sticky;
+  top: 120px;
+  /* set this to cover the tooltip on markup table */
+  z-index: 20;
+  background: #fff;
+}
+
+.new-library-tabs.el-tabs--card>.el-tabs__header .el-tabs__item {
+  color: var(--color-Grey-Grey-97, #979797);
+}
+
+.new-library-tabs.el-tabs--card>.el-tabs__header .el-tabs__item.is-active {
+  border-radius: 4px 4px 0px 0px;
+  color: var(--color-Darkblue-000, #1E4670);
+  border-bottom: 4px solid var(--color-Darkblue-000, #1E4670);
+}
+
+.new-library-tabs .el-tabs__active-bar {
+  height: 0;
+}
+.new-library-tabs.el-tabs--card>.el-tabs__header .el-tabs__nav {
+  border: none;
+  border-bottom: 1px solid #D8D8D8;
+  max-height: 40px;
+}
+
+.new-library-tabs.el-tabs--card>.el-tabs__header .el-tabs__nav-wrap {
+  overflow: visible;
+}
+
+.new-library-tabs.el-tabs--card>.el-tabs__header .el-tabs__nav-scroll {
+  overflow: visible;
+}
+
+.new-library-tabs.el-tabs--card>.el-tabs__header .el-tabs__item {
+  border-left: none;
+  height: 40px;
+}

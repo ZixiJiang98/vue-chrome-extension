@@ -3,6 +3,8 @@ import { pinia } from "src/utils/pinia"
 import { appRouter } from "src/utils/router"
 import { createApp } from "vue"
 import App from "./app.vue"
+import ElementPlus from "element-plus"
+import "element-plus/dist/index.css"
 import ui from "@nuxt/ui/vue-plugin"
 import "./index.css"
 import { usePopupStore } from "../../stores/popup.store"
@@ -48,9 +50,12 @@ appRouter.afterEach((to) => {
 // Delay mounting the app until after store hydration and last route is loaded
 async function bootstrap() {
   // Create Pinia and store context before using store
-  const app = createApp(App).use(i18n).use(ui).use(pinia)
-  // Must install pinia before using store
-  app.use(pinia)
+  const app = createApp(App)
+  .use(i18n)
+  .use(ElementPlus)
+  .use(ui)
+  .use(pinia)
+  .use(appRouter)
   const popupStore = usePopupStore()
 
   // Await hydration of all relevant state
