@@ -61,6 +61,7 @@ const props = defineProps<{ canSwitchSync: boolean }>()
   text-align: center;
   border-radius: 4px;
   transition: background 0.15s;
+  text-decoration: underline;
 }
 .settings-action:hover {
   background: rgba(255,255,255,0.08);
@@ -85,6 +86,9 @@ const props = defineProps<{ canSwitchSync: boolean }>()
   text-underline-position: from-font;
   border-radius: 4px;
   transition: background 0.15s;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
 }
 .settings-back:hover {
   background: rgba(255,255,255,0.08);
@@ -97,9 +101,17 @@ const props = defineProps<{ canSwitchSync: boolean }>()
   height: 18px;
 }
 .back-text {
-  font-size: 11px;
-  line-height: 16px;
-  letter-spacing: 0.5px;
+  font-family: IBM Plex Sans Hebrew, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
   color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  text-align: center;
+  border-radius: 4px;
+  transition: background .15s;
+  text-decoration: underline;
 }
 </style> 
